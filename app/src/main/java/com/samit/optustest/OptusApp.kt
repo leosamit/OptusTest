@@ -6,7 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
 
-class OptusApp:DaggerApplication() {
+class OptusApp : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerOptusAppComponent
             .builder()

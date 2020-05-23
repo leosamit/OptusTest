@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.samit.optustest.databinding.ItemAlbumBinding
 import io.reactivex.subjects.PublishSubject
-import timber.log.Timber
 
 class AlbumAdapter : ListAdapter<AlbumUI, AlbumAdapter.AlbumViewHolder>(
     AlbumDiffCallback()

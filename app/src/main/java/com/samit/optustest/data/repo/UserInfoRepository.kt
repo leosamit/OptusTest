@@ -25,7 +25,7 @@ class UserInfoRepository @Inject constructor(
 ) {
     private val _userInfoLivedata: MutableLiveData<Result<List<UserInfoUI>>> =
         MutableLiveData()
-    val userInfoList: LiveData<Result<List<UserInfoUI>>> = _userInfoLivedata
+    var userInfoList: LiveData<Result<List<UserInfoUI>>> = _userInfoLivedata
 
     private val parentJob = Job()
     private val scope = CoroutineScope(dispatcherProvider.mainDispatcher + parentJob)

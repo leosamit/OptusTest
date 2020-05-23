@@ -17,7 +17,6 @@ import com.samit.optustest.databinding.FragmentAlbumBinding
 import com.samit.optustest.di.injectViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_album.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class AlbumFragment : DaggerFragment() {
@@ -46,7 +45,6 @@ class AlbumFragment : DaggerFragment() {
     }
 
     private fun initUI() {
-        //viewModel.getAlbum()
         actionBar?.apply {
             title = getString(R.string.album)
             setDisplayHomeAsUpEnabled(true)
@@ -65,18 +63,12 @@ class AlbumFragment : DaggerFragment() {
     private fun subscribeUI() {
         viewModel.albumList.observe(viewLifecycleOwner) { result ->
             when (result.status) {
-                Result.Status.LOADING -> {
-                    binding.isLoading = true
-                }
+                Result.Status.LOADING -> binding.isLoading = true
                 Result.Status.SUCCESS -> {
                     binding.album = result.data?.filter { it.albumID.toString() == args.id }
-                    // binding.album = result.data
-                    binding.isLoading = false
-                    Timber.d("Samit ALbum ${result.data}")
-                }
-                Result.Status.ERROR -> {
                     binding.isLoading = false
                 }
+                Result.Status.ERROR -> binding.isLoading = false
             }
         }
 
