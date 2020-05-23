@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.samit.optustest.MainActivity
 import com.samit.optustest.R
 import com.samit.optustest.data.Result
 import com.samit.optustest.databinding.FragmentAlbumBinding
 import com.samit.optustest.di.injectViewModel
-import com.samit.optustest.ui.userinfo.UserInfoAdapter
-import com.samit.optustest.ui.userinfo.UserInfoFragmentDirections
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_album.*
-import kotlinx.android.synthetic.main.fragment_user_info.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -28,6 +27,9 @@ class AlbumFragment : DaggerFragment() {
     private lateinit var viewModel: AlbumViewModel
     private lateinit var binding: FragmentAlbumBinding
     private val args by navArgs<AlbumFragmentArgs>()
+
+    private val actionBar: ActionBar?
+        get() = (activity as? MainActivity)?.supportActionBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +46,12 @@ class AlbumFragment : DaggerFragment() {
     }
 
     private fun initUI() {
+        actionBar?.apply {
+            title = getString(R.string.album)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            setHomeButtonEnabled(true)
+        }
         binding.isLoading = true
         viewModel = injectViewModel(viewModelFactory)
         binding.executePendingBindings()

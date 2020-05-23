@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import com.samit.optustest.MainActivity
 import com.samit.optustest.R
 import com.samit.optustest.data.Result
 import com.samit.optustest.databinding.FragmentUserInfoBinding
@@ -21,6 +23,9 @@ class UserInfoFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: UserInfoViewModel
     private lateinit var binding: FragmentUserInfoBinding
+
+    private val actionBar: ActionBar?
+        get() = (activity as? MainActivity)?.supportActionBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +42,12 @@ class UserInfoFragment : DaggerFragment() {
     }
 
     private fun initUI() {
+        actionBar?.apply {
+            title = getString(R.string.user_info)
+            setDisplayHomeAsUpEnabled(false)
+            setDisplayShowHomeEnabled(false)
+            setHomeButtonEnabled(false)
+        }
         binding.isLoading = true
         viewModel = injectViewModel(viewModelFactory)
         binding.executePendingBindings()
