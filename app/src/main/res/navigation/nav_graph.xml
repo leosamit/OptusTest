@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/userInfoFragment">
+
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.samit.optustest.ui.userinfo.UserInfoFragment"
+        android:label="UserInfo"
+        tools:layout="@layout/fragment_user_info">
+
+        <action
+            android:id="@+id/navigateToAlbum"
+            app:destination="@id/albumFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.samit.optustest.ui.album.AlbumFragment"
+        android:label="Album"
+        tools:layout="@layout/fragment_user_info">
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.samit.optustest.ui.photo.PhotoFragment"
+        android:label="Photo"
+        tools:layout="@layout/fragment_user_info" />
+
+</navigation>
