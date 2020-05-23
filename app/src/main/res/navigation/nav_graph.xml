@@ -21,12 +21,17 @@
         android:id="@+id/albumFragment"
         android:name="com.samit.optustest.ui.album.AlbumFragment"
         android:label="Album"
-        tools:layout="@layout/fragment_user_info">
+        tools:layout="@layout/fragment_album">
 
         <argument
             android:name="id"
             app:argType="string"
             app:nullable="true" />
+
+        <action
+            android:id="@+id/navigatetoPhoto"
+            app:destination="@id/photoFragment" />
+
 
     </fragment>
 
@@ -34,6 +39,11 @@
         android:id="@+id/photoFragment"
         android:name="com.samit.optustest.ui.photo.PhotoFragment"
         android:label="Photo"
-        tools:layout="@layout/fragment_user_info" />
+        tools:layout="@layout/fragment_photo">
+
+        <argument
+            android:name="photo"
+            app:argType="com.samit.optustest.ui.album.AlbumUI"/>
+    </fragment>
 
 </navigation>

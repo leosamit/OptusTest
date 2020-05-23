@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</LinearLayout>
+    <data>
+
+        <import type="com.samit.optustest.ui.album.AlbumUI" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="album"
+            type="AlbumUI" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/srl_facts"
+        style="@style/MatchParentStyle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/MatchParentStyle"
+            android:layout_margin="@dimen/card_view_margin">
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:albumImage="@{album.url}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/WrapContentStyle.TextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBlue"
+                android:padding="15dp"
+                android:text="@{album.title}"
+                android:layout_margin="@dimen/item_constraint_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_photo"
+                tools:text="@string/long_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

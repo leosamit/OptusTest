@@ -1,14 +1,14 @@
 package com.samit.optustest.binding
 
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.samit.optustest.R
 import com.samit.optustest.ui.album.AlbumAdapter
 import com.samit.optustest.ui.album.AlbumUI
 import com.samit.optustest.ui.userinfo.UserInfoAdapter
 import com.samit.optustest.ui.userinfo.UserInfoUI
+import com.squareup.picasso.Picasso
 
 @BindingAdapter(value = ["app:userInfoList"])
 fun setUserInfoList(rv: RecyclerView, items: List<UserInfoUI>?) {
@@ -26,9 +26,11 @@ fun setAlbumList(rv: RecyclerView, items: List<AlbumUI>?) {
     (rv.adapter as AlbumAdapter).submitList(items)
 }
 
-@BindingAdapter(value = ["app:albumImage"])
+@BindingAdapter("albumImage")
 fun setAlbumImage(view: ImageView, src: String?) {
-    Glide.with(view.context)
+    Picasso.get()
         .load(src)
+        .error(R.drawable.placeholder)
+        .placeholder(R.drawable.placeholder)
         .into(view)
 }
