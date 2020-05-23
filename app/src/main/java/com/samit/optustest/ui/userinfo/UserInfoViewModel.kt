@@ -7,20 +7,17 @@ import javax.inject.Inject
 class UserInfoViewModel @Inject constructor(private val repository: UserInfoRepository) :
     ViewModel() {
 
-    /* val userInfoList by lazy {
-         repository.getUserInfo()
-     }*/
+    val userInfoList = repository.userInfoList
 
     init {
         repository.getUserInfo()
     }
 
-    val userInfoList = repository.userInfoList
-
-
     override fun onCleared() {
         super.onCleared()
         repository.cancelAllRequests()
     }
-
+    fun refreshUserInfo(){
+        repository.getUserInfo()
+    }
 }

@@ -7,11 +7,15 @@ import javax.inject.Inject
 class AlbumViewModel @Inject constructor(private val repository: AlbumRepository) :
     ViewModel() {
 
+    val albumList = repository.albumList
+
     init {
         repository.getAlbum()
     }
 
-    val albumList = repository.albumList
+    fun refreshAlbum() {
+        repository.getAlbum()
+    }
 
     override fun onCleared() {
         super.onCleared()

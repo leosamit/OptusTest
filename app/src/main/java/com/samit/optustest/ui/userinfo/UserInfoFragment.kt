@@ -52,32 +52,27 @@ class UserInfoFragment : DaggerFragment() {
         viewModel = injectViewModel(viewModelFactory)
         binding.executePendingBindings()
         binding.srlFacts.setOnRefreshListener {
-            //refresh()
+            viewModel.refreshUserInfo()
         }
         subscribeUI()
     }
 
     private fun subscribeUI() {
-
         viewModel.userInfoList.observe(viewLifecycleOwner) { result ->
             when (result.status) {
-                Result.Status.LOADING -> {
-                    binding.isLoading = true
-                }
+                Result.Status.LOADING -> binding.isLoading = true
+
                 Result.Status.SUCCESS -> {
                     binding.userInfos = result.data
                     binding.isLoading = false
                 }
-                Result.Status.ERROR -> {
-                    binding.isLoading = false
-                }
+                Result.Status.ERROR -> binding.isLoading = false
             }
         }
 
         (rv_userInfo.adapter as? UserInfoAdapter)?.run {
             userClicks.subscribe {
                 findNavController().navigate(UserInfoFragmentDirections.navigateToAlbum(it.id.toString()))
-
             }
         }
     }

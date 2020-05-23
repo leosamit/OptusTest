@@ -46,6 +46,7 @@ class AlbumFragment : DaggerFragment() {
     }
 
     private fun initUI() {
+        //viewModel.getAlbum()
         actionBar?.apply {
             title = getString(R.string.album)
             setDisplayHomeAsUpEnabled(true)
@@ -56,13 +57,12 @@ class AlbumFragment : DaggerFragment() {
         viewModel = injectViewModel(viewModelFactory)
         binding.executePendingBindings()
         binding.srlFacts.setOnRefreshListener {
-            //refresh()
+            viewModel.refreshAlbum()
         }
         subscribeUI()
     }
 
     private fun subscribeUI() {
-
         viewModel.albumList.observe(viewLifecycleOwner) { result ->
             when (result.status) {
                 Result.Status.LOADING -> {

@@ -25,8 +25,7 @@
 
             <ImageView
                 android:id="@+id/iv_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/WrapContentStyle"
                 app:albumImage="@{album.url}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -38,10 +37,10 @@
                 style="@style/WrapContentStyle.TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_view_margin"
                 android:background="@color/colorBlue"
-                android:padding="15dp"
+                android:padding="@dimen/card_view_margin"
                 android:text="@{album.title}"
-                android:layout_margin="@dimen/item_constraint_margin"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_photo"
